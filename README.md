@@ -2,6 +2,8 @@
 
 A type-safe format string for `cstdio` powered by C++20.
 
+[Live Demo](https://godbolt.org/z/dY3EzGo3f)
+
 ## Usage
 
 ```C++
