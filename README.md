@@ -17,6 +17,8 @@ int main()
 }
 ```
 
+It only works for `gcc-11`.
+
 ## NOTE
 
 It only supports simple format strings like `%d`, `%f`, and `%s`.
