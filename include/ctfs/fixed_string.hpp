@@ -1,5 +1,5 @@
-#ifndef CTFS_FIXED_STRING
-#define CTFS_FIXED_STRING
+#ifndef CTFS_FIXED_STRING_HPP
+#define CTFS_FIXED_STRING_HPP
 
 #include <cstddef>
 
@@ -31,4 +31,4 @@ template <size_t N> struct fixed_string {
 };
 } // namespace ctfs
 
-#endif // CTFS_FIXED_STRING
+#endif // CTFS_FIXED_STRING_HPP
