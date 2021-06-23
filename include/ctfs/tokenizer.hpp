@@ -31,94 +31,134 @@ struct tokenizer {
       parse_result<Type::NONE, LengthSpecifier::NONE, pos + 1>>;
 };
 
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, '\0', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, '\0', Type::NONE, length_spec> {
   using result = parse_result<Type::NONE, LengthSpecifier::NONE, pos + 1>;
 };
 
+/** Length Subspecifiers */
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'h', Type::NONE, length_spec> {
+  using result = std::conditional_t<
+      str[pos + 1] == 'h',
+      typename tokenizer<str, pos + 2, str[pos + 2], Type::NONE,
+                         LengthSpecifier::hh>::result,
+      typename tokenizer<str, pos + 1, str[pos + 1], Type::NONE,
+                         LengthSpecifier::h>::result>;
+};
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'l', Type::NONE, length_spec> {
+  using result = std::conditional_t<
+      str[pos + 1] == 'l',
+      typename tokenizer<str, pos + 2, str[pos + 2], Type::NONE,
+                         LengthSpecifier::ll>::result,
+      typename tokenizer<str, pos + 1, str[pos + 1], Type::NONE,
+                         LengthSpecifier::l>::result>;
+};
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'j', Type::NONE, length_spec> {
+  using result = typename tokenizer<str, pos + 1, str[pos + 1], Type::NONE,
+                                    LengthSpecifier::j>::result;
+};
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'z', Type::NONE, length_spec> {
+  using result = typename tokenizer<str, pos + 1, str[pos + 1], Type::NONE,
+                                    LengthSpecifier::z>::result;
+};
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 't', Type::NONE, length_spec> {
+  using result = typename tokenizer<str, pos + 1, str[pos + 1], Type::NONE,
+                                    LengthSpecifier::t>::result;
+};
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'L', Type::NONE, length_spec> {
+  using result = typename tokenizer<str, pos + 1, str[pos + 1], Type::NONE,
+                                    LengthSpecifier::L>::result;
+};
+
 /** INTEGER */
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'd', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'd', Type::NONE, length_spec> {
   using result = parse_result<Type::INTEGER, length_spec, pos + 1>;
 };
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'i', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'i', Type::NONE, length_spec> {
   using result = parse_result<Type::INTEGER, length_spec, pos + 1>;
 };
 
 /** UNSIGNED */
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'u', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'u', Type::NONE, length_spec> {
   using result = parse_result<Type::UNSIGNED, length_spec, pos + 1>;
 };
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'o', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'o', Type::NONE, length_spec> {
   using result = parse_result<Type::UNSIGNED, length_spec, pos + 1>;
 };
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'x', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'x', Type::NONE, length_spec> {
   using result = parse_result<Type::UNSIGNED, length_spec, pos + 1>;
 };
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'X', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'X', Type::NONE, length_spec> {
   using result = parse_result<Type::UNSIGNED, length_spec, pos + 1>;
 };
 
 /** DOUBLE */
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'a', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'a', Type::NONE, length_spec> {
   using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
 };
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'A', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'A', Type::NONE, length_spec> {
   using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
 };
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'e', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'e', Type::NONE, length_spec> {
   using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
 };
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'E', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'E', Type::NONE, length_spec> {
   using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
 };
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'f', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'f', Type::NONE, length_spec> {
   using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
 };
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'F', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'F', Type::NONE, length_spec> {
   using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
 };
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'g', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'g', Type::NONE, length_spec> {
   using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
 };
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'G', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'G', Type::NONE, length_spec> {
   using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
 };
 
 /** CHAR */
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'c', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'c', Type::NONE, length_spec> {
   using result = parse_result<Type::CHAR, length_spec, pos + 1>;
 };
 
 /** CSTRING */
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 's', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 's', Type::NONE, length_spec> {
   using result = parse_result<Type::CSTRING, length_spec, pos + 1>;
 };
 
 /** POINTER */
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'p', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'p', Type::NONE, length_spec> {
   using result = parse_result<Type::POINTER, length_spec, pos + 1>;
 };
 
 /** NOTHING */
-template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'n', type, length_spec> {
+template <fixed_string str, size_t pos, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'n', Type::NONE, length_spec> {
   using result = parse_result<Type::NOTHING, length_spec, pos + 1>;
 };
 } // namespace ctfs

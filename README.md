@@ -16,6 +16,10 @@ int main()
   // Prints "value1: 005, value2: 2.30".
   ctfs::print<"value1: %03d, value2: %.2f\n">(5, 2.3f);
 
+  int temp = 5;
+  // Prints "64bit-unsigned: 18446744073709551615, pointer: 0x...".
+  ctfs::print<"64bit-unsigned: %llu, pointer: %p\n">(UINT64_MAX, &temp);
+
   // error: invalid conversion from ‘const char*’ to ‘int’
   ctfs::print<"This will fail to compile: %d %d\n">(3, "");
 }
@@ -25,7 +29,7 @@ int main()
 
 ## NOTE
 
-It supports `printf` only. Also the length sub-specifiers (e.g. `lld`, `lu`) are not supported yet.
+It supports `printf` only. Other functions (`sprintf`, `wprintf`, `scanf`, ...) will be supported.
 
 ## License
 
