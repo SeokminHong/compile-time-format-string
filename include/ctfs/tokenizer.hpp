@@ -36,6 +36,7 @@ struct tokenizer<str, pos, '\0', type, length_spec> {
   using result = parse_result<Type::NONE, LengthSpecifier::NONE, pos + 1>;
 };
 
+/** INTEGER */
 template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
 struct tokenizer<str, pos, 'd', type, length_spec> {
   using result = parse_result<Type::INTEGER, length_spec, pos + 1>;
@@ -44,13 +45,81 @@ template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
 struct tokenizer<str, pos, 'i', type, length_spec> {
   using result = parse_result<Type::INTEGER, length_spec, pos + 1>;
 };
+
+/** UNSIGNED */
 template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 's', type, length_spec> {
-  using result = parse_result<Type::CSTRING, length_spec, pos + 1>;
+struct tokenizer<str, pos, 'u', type, length_spec> {
+  using result = parse_result<Type::UNSIGNED, length_spec, pos + 1>;
+};
+template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'o', type, length_spec> {
+  using result = parse_result<Type::UNSIGNED, length_spec, pos + 1>;
+};
+template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'x', type, length_spec> {
+  using result = parse_result<Type::UNSIGNED, length_spec, pos + 1>;
+};
+template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'X', type, length_spec> {
+  using result = parse_result<Type::UNSIGNED, length_spec, pos + 1>;
+};
+
+/** DOUBLE */
+template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'a', type, length_spec> {
+  using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
+};
+template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'A', type, length_spec> {
+  using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
+};
+template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'e', type, length_spec> {
+  using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
+};
+template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'E', type, length_spec> {
+  using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
 };
 template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
 struct tokenizer<str, pos, 'f', type, length_spec> {
   using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
+};
+template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'F', type, length_spec> {
+  using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
+};
+template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'g', type, length_spec> {
+  using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
+};
+template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'G', type, length_spec> {
+  using result = parse_result<Type::DOUBLE, length_spec, pos + 1>;
+};
+
+/** CHAR */
+template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'c', type, length_spec> {
+  using result = parse_result<Type::CHAR, length_spec, pos + 1>;
+};
+
+/** CSTRING */
+template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 's', type, length_spec> {
+  using result = parse_result<Type::CSTRING, length_spec, pos + 1>;
+};
+
+/** POINTER */
+template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'p', type, length_spec> {
+  using result = parse_result<Type::POINTER, length_spec, pos + 1>;
+};
+
+/** NOTHING */
+template <fixed_string str, size_t pos, Type type, LengthSpecifier length_spec>
+struct tokenizer<str, pos, 'n', type, length_spec> {
+  using result = parse_result<Type::NOTHING, length_spec, pos + 1>;
 };
 } // namespace ctfs
 
