@@ -5,7 +5,7 @@
 
 namespace ctfs {
 template <size_t N> struct fixed_string {
-  char content[N + 1] = {};
+  char content[N] = {};
   size_t size = 0;
 
   constexpr fixed_string(const char (&input)[N]) noexcept {
