@@ -4,7 +4,6 @@
 #include "fixed_string.hpp"
 #include "types.hpp"
 #include <algorithm>
-#include <array>
 #include <type_traits>
 
 namespace ctfs {
