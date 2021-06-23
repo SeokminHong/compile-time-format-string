@@ -21,7 +21,7 @@ int main()
 }
 ```
 
-It only works for `gcc-11`.
+`g++-11 -std=c++20` required to build.
 
 ## NOTE
 
