@@ -7,11 +7,11 @@
 #include <cstdio>
 
 namespace ctfs {
-template <fixed_string str, typename... Ts> struct functions;
+template <fixed_string str, typename... Args> struct functions;
 
-template <fixed_string str, typename... Ts>
-struct functions<str, type_list<Ts...>> {
-  static int print(Ts... args) { return printf(str.content, args...); }
+template <fixed_string str, typename... Args>
+struct functions<str, type_list<Args...>> {
+  static int print(Args... args) { return printf(str.content, args...); }
 };
 } // namespace ctfs
 
