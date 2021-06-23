@@ -9,11 +9,11 @@
 namespace ctfs {
 template <fixed_string str, typename pos, typename list> struct parser {
   static constexpr size_t pos_val = pos::value;
-  using parse_result = token<str[pos_val], str[pos_val + 1], list>;
-  using result = typename parser<
-      str,
-      std::integral_constant<size_t, pos_val + (parse_result::result ? 2 : 1)>,
-      typename parse_result::types>::result;
+  using parse_result = token<str, pos_val, list>;
+  using result =
+      typename parser<str,
+                      std::integral_constant<size_t, parse_result::next_pos>,
+                      typename parse_result::types>::result;
 };
 
 template <fixed_string str, typename list>
