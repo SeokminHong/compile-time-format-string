@@ -36,8 +36,8 @@ struct tokenizer<str, pos, '\0', Type::NONE, length_spec> {
 };
 
 /** Length Subspecifiers */
-template <fixed_string str, size_t pos, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'h', Type::NONE, length_spec> {
+template <fixed_string str, size_t pos>
+struct tokenizer<str, pos, 'h', Type::NONE, LengthSpecifier::NONE> {
   using result = std::conditional_t<
       str[pos + 1] == 'h',
       typename tokenizer<str, pos + 2, str[pos + 2], Type::NONE,
@@ -45,8 +45,8 @@ struct tokenizer<str, pos, 'h', Type::NONE, length_spec> {
       typename tokenizer<str, pos + 1, str[pos + 1], Type::NONE,
                          LengthSpecifier::h>::result>;
 };
-template <fixed_string str, size_t pos, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'l', Type::NONE, length_spec> {
+template <fixed_string str, size_t pos>
+struct tokenizer<str, pos, 'l', Type::NONE, LengthSpecifier::NONE> {
   using result = std::conditional_t<
       str[pos + 1] == 'l',
       typename tokenizer<str, pos + 2, str[pos + 2], Type::NONE,
@@ -54,23 +54,23 @@ struct tokenizer<str, pos, 'l', Type::NONE, length_spec> {
       typename tokenizer<str, pos + 1, str[pos + 1], Type::NONE,
                          LengthSpecifier::l>::result>;
 };
-template <fixed_string str, size_t pos, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'j', Type::NONE, length_spec> {
+template <fixed_string str, size_t pos>
+struct tokenizer<str, pos, 'j', Type::NONE, LengthSpecifier::NONE> {
   using result = typename tokenizer<str, pos + 1, str[pos + 1], Type::NONE,
                                     LengthSpecifier::j>::result;
 };
-template <fixed_string str, size_t pos, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'z', Type::NONE, length_spec> {
+template <fixed_string str, size_t pos>
+struct tokenizer<str, pos, 'z', Type::NONE, LengthSpecifier::NONE> {
   using result = typename tokenizer<str, pos + 1, str[pos + 1], Type::NONE,
                                     LengthSpecifier::z>::result;
 };
-template <fixed_string str, size_t pos, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 't', Type::NONE, length_spec> {
+template <fixed_string str, size_t pos>
+struct tokenizer<str, pos, 't', Type::NONE, LengthSpecifier::NONE> {
   using result = typename tokenizer<str, pos + 1, str[pos + 1], Type::NONE,
                                     LengthSpecifier::t>::result;
 };
-template <fixed_string str, size_t pos, LengthSpecifier length_spec>
-struct tokenizer<str, pos, 'L', Type::NONE, length_spec> {
+template <fixed_string str, size_t pos>
+struct tokenizer<str, pos, 'L', Type::NONE, LengthSpecifier::NONE> {
   using result = typename tokenizer<str, pos + 1, str[pos + 1], Type::NONE,
                                     LengthSpecifier::L>::result;
 };
