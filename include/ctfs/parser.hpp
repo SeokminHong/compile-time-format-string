@@ -20,6 +20,10 @@ template <fixed_string str, typename list>
 struct parser<str, std::integral_constant<size_t, str.size - 1>, list> {
   using result = list;
 };
+template <fixed_string str, typename list>
+struct parser<str, std::integral_constant<size_t, str.size>, list> {
+  using result = list;
+};
 } // namespace ctfs
 
 #endif // CTFS_PARSER_HPP
