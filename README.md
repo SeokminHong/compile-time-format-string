@@ -22,6 +22,24 @@ int main()
 
   // error: invalid conversion from ‘const char*’ to ‘int’
   ctfs::print<"This will fail to compile: %d %d\n">(3, "");
+
+
+  char s[256]{};
+  // Write "sprint 4294967295 3.140000" to the buffer `s`.
+  ctfs::sprint<"sprint %u %f">(s, -1, 3.14);
+  puts(s);
+
+  // error: too few arguments to function
+  // ctfs::sprint<"fail to compile: %s %s">(s, "Hello");
+
+  FILE *f = fopen("./main.txt", "w");
+  // cat main.txt: "fprint 2.718 b"
+  ctfs::fprint<"fprint %g %c">(f, 2.718, 'a' + 1);
+
+  // error: too many arguments to function
+  // ctfs::fprint<"fprint %d %d %d">(f, 1, 2, 3, 4);
+
+  fclose(f);
 }
 ```
 
@@ -29,7 +47,7 @@ int main()
 
 ## NOTE
 
-It supports `printf` only. Other functions (`sprintf`, `wprintf`, `scanf`, ...) will be supported.
+It supports `printf`, `sprintf`, and `fprintf` only. stdin functions (`scanf`, `sscanf`, ...) and wchar functions (`wprintf`, ...) will be supported.
 
 ## License
 
