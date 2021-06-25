@@ -2,7 +2,7 @@
 #define CTFS_TYPE_LIST_HPP
 
 namespace ctfs {
-template <typename... Args> struct type_list { using type = type_list; };
+template <typename... Args> struct type_list {};
 } // namespace ctfs
 
 #endif // CTFS_TYPE_LIST_HPP
