@@ -2,7 +2,7 @@
 
 A type-safe format string for `cstdio` powered by C++20.
 
-[Live Demo](https://godbolt.org/z/6fdKqx8GM)
+[Live Demo](https://godbolt.org/z/TGe3rjbKK)
 
 ## Usage
 
