@@ -14,9 +14,9 @@ template <fixed_string str> struct execute {
   static constexpr auto fprint = &functions<str, types>::fprint;
 };
 
-template <fixed_string str> const static auto print = execute<str>::print;
-template <fixed_string str> const static auto sprint = execute<str>::sprint;
-template <fixed_string str> const static auto fprint = execute<str>::fprint;
+template <fixed_string str> constexpr static auto print = execute<str>::print;
+template <fixed_string str> constexpr static auto sprint = execute<str>::sprint;
+template <fixed_string str> constexpr static auto fprint = execute<str>::fprint;
 } // namespace ctfs
 
 #endif // CTFS_HPP
