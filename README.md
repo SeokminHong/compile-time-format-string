@@ -1,6 +1,6 @@
 # Compile Time Format String
 
-A type-safe format string for `cstdio` powered by C++20.
+Type-safe format string I/O functions similar to cstdio interfaces using C++20.
 
 [Live Demo](https://godbolt.org/z/TGe3rjbKK)
 
