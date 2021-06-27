@@ -26,4 +26,8 @@ int main() {
   // ctfs::fprint<"fprint %d %d %d">(f, 1, 2, 3, 4);
 
   fclose(f);
+
+  int a, b;
+  ctfs::scan<"%d %d">(&a, &b);
+  ctfs::print<"%#x (%d) %#x (%d)\n">(a, a, b, b);
 }

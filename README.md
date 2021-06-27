@@ -40,6 +40,10 @@ int main()
   // ctfs::fprint<"fprint %d %d %d">(f, 1, 2, 3, 4);
 
   fclose(f);
+
+  int a, b;
+  ctfs::scan<"%d %d">(&a, &b);
+  ctfs::print<"%#x (%d) %#x (%d)\n">(a, a, b, b);
 }
 ```
 
@@ -47,7 +51,7 @@ int main()
 
 ## NOTE
 
-It supports `printf`, `sprintf`, and `fprintf` only. stdin functions (`scanf`, `sscanf`, ...) and wchar functions (`wprintf`, ...) will be supported.
+It supports stdout functions (`printf`, `sprintf`, and `fprintf`) and stdin functions (`scanf`, `sscanf`, `fscanf`). However, widechar versions (`wprintf`, ...) and detailed format specifiers for stdin functions are currently not supported.
 
 ## License
 
